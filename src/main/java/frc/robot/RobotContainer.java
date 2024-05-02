@@ -13,13 +13,12 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
-import org.yourteamname.robot.subsystems.Drivetrain;
-import org.yourteamname.robot.subsystems.Shooter;
-import org.yourteamname.robot.subsystems.Limelight;
+import frc.robot.Swerve.SwerveDrive;
+import frc.robot.subsystems.Shooter;
 
 public class RobotContainer {
     private final XboxController controller = new XboxController(0);
-    private final Drivetrain drivetrain = new Drivetrain();
+    private final SwerveDrive drivetrain = new SwerveDrive();
     private final Shooter shooter = new Shooter();
     private final Timer timer = new Timer();
 
@@ -35,14 +34,14 @@ public class RobotContainer {
 
     private void configureButtonBindings() {
 
-      
+
     }
 
     public Command getAutonomousCommand() {
         // Setup autonomous routine using commands
         return new SequentialCommandGroup(
-            new RunCommand(() -> drivetrain.drive(0.5, 0.0, 0.0), drivetrain).withTimeout(2),
-            new InstantCommand(() -> drivetrain.stop(), drivetrain)
+            new RunCommand(() -> SwerveDrive.drive(0.5, 0.0, 0.0), drivetrain).withTimeout(2),
+            new InstantCommand(() -> SwerveDrive.stop(), drivetrain)
         );
     }
     
